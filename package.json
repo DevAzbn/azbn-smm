@@ -1,0 +1,31 @@
+{
+  "name": "azbn-smm",
+  "version": "0.1.0",
+  "description": "Framework for SMM",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "azbn.ru",
+  "license": "ISC",
+  "dependencies": {
+    "antigate": "0.0.1",
+    "cheerio": "*",
+    "cluster": "*",
+    "mysql": "^2.9.0",
+    "ncp": "*",
+    "node-telegram-bot-api": "^0.21.1",
+    "nodemailer": "^2.4.2",
+    "request": "*",
+    "vksdk": "^5.2.0",
+    "ws": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DevAzbn/azbn-smm.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DevAzbn/azbn-smm/issues"
+  },
+  "homepage": "https://github.com/DevAzbn/azbn-smm#readme"
+}
