@@ -17,7 +17,7 @@ function _(azbn) {
 			azbn.mdl('cfg').dbt.vk_token + "`.app_id, `" +
 			azbn.mdl('cfg').dbt.vk_token + "`.user_id, `" +
 			azbn.mdl('cfg').dbt.vk_token + "`.access_token, `" +
-			azbn.mdl('cfg').dbt.addvkfr + "`.lastact, `" +
+			azbn.mdl('cfg').dbt.addvkfr + "`.lastact " +
 		"FROM `" +
 			azbn.mdl('cfg').dbt.vk_token + "`, `" +
 			azbn.mdl('cfg').dbt.addvkfr + "` " +
