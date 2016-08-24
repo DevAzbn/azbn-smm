@@ -22,6 +22,8 @@ function _(azbn) {
 			azbn.mdl('cfg').dbt.invite2gr + "` " +
 		"WHERE 1 " + //(`" + azbn.mdl('cfg').dbt.invite2gr + "`.lastact < '" + dl + "')
 			"AND " +
+			"(`" + azbn.mdl('cfg').dbt.vk_token + "`.stop_at > '" + ds + "') " +
+			"AND " +
 			"(`" + azbn.mdl('cfg').dbt.vk_token + "`.user_id = `" + azbn.mdl('cfg').dbt.invite2gr + "`.user_id) " +
 			"AND " +
 			"(`" + azbn.mdl('cfg').dbt.vk_token + "`.app_id = '2') " +

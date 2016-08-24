@@ -9,7 +9,33 @@ function _(azbn) {
 	var ds = Math.floor(azbn.now() / 1000);
 	var dl = ds - 2160;
 	
-	azbn.mdl('mysql').query("SELECT `" + azbn.mdl('cfg').dbt.vk_token + "`.id, `" + azbn.mdl('cfg').dbt.vk_token + "`.app_id, `" + azbn.mdl('cfg').dbt.vk_token + "`.user_id, `" + azbn.mdl('cfg').dbt.vk_token + "`.access_token, `" + azbn.mdl('cfg').dbt.addvkfr + "`.lastact,  `" + azbn.mdl('cfg').dbt.addvkfr + "`.p FROM `" + azbn.mdl('cfg').dbt.vk_token + "`, `" + azbn.mdl('cfg').dbt.addvkfr + "` WHERE (`" + azbn.mdl('cfg').dbt.addvkfr + "`.lastact < '" + dl + "') AND (`" + azbn.mdl('cfg').dbt.vk_token + "`.user_id = `" + azbn.mdl('cfg').dbt.addvkfr + "`.user_id) AND (`" + azbn.mdl('cfg').dbt.vk_token + "`.app_id = '1') AND (`" + azbn.mdl('cfg').dbt.addvkfr + "`.status = '1') ORDER BY `" + azbn.mdl('cfg').dbt.addvkfr + "`.lastact", function(err, rows, fields) {
+	azbn.mdl('mysql').query(
+		"SELECT `" +
+			azbn.mdl('cfg').dbt.vk_token + "`.id, `" +
+			azbn.mdl('cfg').dbt.vk_token + "`.app_id, `" +
+			azbn.mdl('cfg').dbt.vk_token + "`.user_id, `" +
+			azbn.mdl('cfg').dbt.vk_token + "`.access_token, `" +
+			azbn.mdl('cfg').dbt.addvkfr + "`.lastact,  `" +
+			azbn.mdl('cfg').dbt.addvkfr + "`.p " +
+		"FROM `" +
+			azbn.mdl('cfg').dbt.vk_token + "`, `" +
+			azbn.mdl('cfg').dbt.addvkfr + "` " +
+		"WHERE 1" +
+			"AND " +
+			"(`" + azbn.mdl('cfg').dbt.addvkfr + "`.lastact < '" + dl + "') " +
+			"AND " +
+			"(`" + azbn.mdl('cfg').dbt.vk_token + "`.stop_at > '" + ds + "') " +
+			"AND " +
+			"(`" + azbn.mdl('cfg').dbt.vk_token + "`.user_id = `" + azbn.mdl('cfg').dbt.addvkfr + "`.user_id) " +
+			"AND " +
+			"(`" + azbn.mdl('cfg').dbt.vk_token + "`.app_id = '1') " +
+			"AND " +
+			"(`" + azbn.mdl('cfg').dbt.addvkfr + "`.status = '1') " +
+		"ORDER BY `" +
+			azbn.mdl('cfg').dbt.addvkfr + "`.lastact",
+			
+		function(err, rows, fields) {
+		
 		if (err) {
 			
 			azbn.echo('Error while performing Query. ' + err, log_name);

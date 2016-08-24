@@ -11,7 +11,14 @@ function _(azbn) {
 	var ds = Math.floor(azbn.now() / 1000);
 	var dl = ds - 86400;
 	
-	azbn.mdl('mysql').query("SELECT * FROM `" + azbn.mdl('cfg').dbt.userinfo + "` WHERE (lastact < '" + dl + "') ORDER BY lastact", function(err, rows, fields) {
+	azbn.mdl('mysql').query(
+		"SELECT * " +
+		"FROM `" +
+			azbn.mdl('cfg').dbt.userinfo + "` " +
+		"WHERE (lastact < '" + dl + "') " +
+		"ORDER BY lastact",
+		
+		function(err, rows, fields) {
 		if (err) {
 			
 			azbn.echo('Error while performing Query. ' + err, log_name);

@@ -9,7 +9,14 @@ function _(azbn) {
 	//var ds = Math.floor(azbn.now() / 1000);
 	//var dl = ds - 2160;
 	
-	azbn.mdl('mysql').query("SELECT * FROM `" + azbn.mdl('cfg').dbt.telegrambot_notify + "` WHERE (status = 0) ORDER BY id", function(err, rows, fields) {
+	azbn.mdl('mysql').query(
+		"SELECT * " +
+		"FROM `" +
+			azbn.mdl('cfg').dbt.telegrambot_notify + "` " +
+		"WHERE (status = 0) " +
+		"ORDER BY id",
+		
+		function(err, rows, fields) {
 		if (err) {
 			
 			azbn.echo('Error while performing Query. ' + err, log_name);
