@@ -79,10 +79,25 @@ function _(azbn) {
 									var item = {
 										created_at : ds,
 										user_id : user.id || 0,
-										counters_friends : user.counters.friends || 0,
-										counters_followers : user.counters.followers || 0,
-										counters_subscriptions : user.counters.subscriptions || 0,
 									};
+									
+									if(user.counters.friends) {
+										item.counters_friends = user.counters.friends;
+									} else {
+										item.counters_friends = 0;
+									}
+									
+									if(user.counters.followers) {
+										item.counters_followers = user.counters.followers;
+									} else {
+										item.counters_followers = 0;
+									}
+									
+									if(user.counters.subscriptions) {
+										item.counters_subscriptions = user.counters.subscriptions;
+									} else {
+										item.counters_subscriptions = 0;
+									}
 									
 									azbn.mdl('mysql').query("INSERT INTO `" + azbn.mdl('cfg').dbt.userhistory + "` SET ? ", item, function(err, result) {
 										if(result.insertId) {
