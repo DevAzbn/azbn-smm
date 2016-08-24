@@ -59,6 +59,8 @@ function _(azbn) {
 						
 						var vk = require('./../../vk')(azbn, h.app_id);
 						
+						vk.setToken(h.access_token);
+						
 						vk.request('users.get', {'user_ids' : str , fields :'sex,city,country,photo_100,photo_200_orig,photo_200,photo_400_orig,photo_max,photo_max_orig,photo_id,last_seen,screen_name,counters' }, function(resp) {
 							
 							if(azbn.is_def(resp.error) && !azbn.is_null(resp.error)) {
