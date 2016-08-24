@@ -84,7 +84,9 @@ function _(azbn) {
 									
 									azbn.mdl('mysql').query("INSERT INTO `" + azbn.mdl('cfg').dbt.userhistory + "` SET ? ", item, function(err, result) {
 										if(result.insertId) {
+											azbn.echo('[ Inserted counters for user #' + user.id + ' ]', log_name);
 										} else {
+											azbn.echo('[ Error on inserting counters for user #' + user.id + ' ]', log_name);
 										}
 									});
 									
