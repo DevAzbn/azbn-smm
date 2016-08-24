@@ -43,11 +43,11 @@ function _(azbn) {
 			str = str_arr.join(',');
 			
 			azbn.mdl('mysql').query("SELECT * FROM `" + azbn.mdl('cfg').dbt.vk_token + "` WHERE (app_id = '" + app_id + "') ORDER BY RAND() LIMIT 1", function(_err, _rows, _fields) {
-				if (err) {
+				if (_err) {
 					
 					//azbn.echo('Error while performing Query. ' + err, log_name);
 					
-				} else if(rows.length == 0) {
+				} else if(_rows.length == 0) {
 					
 					//azbn.echo('No rows for action', log_name);
 					
@@ -76,36 +76,38 @@ function _(azbn) {
 									
 									var p = JSON.stringify(user);
 									
-									var item = {
-										created_at : ds,
-										user_id : user.id || 0,
-									};
-									
-									if(user.counters.friends) {
-										item.counters_friends = user.counters.friends;
-									} else {
-										item.counters_friends = 0;
-									}
-									
-									if(user.counters.followers) {
-										item.counters_followers = user.counters.followers;
-									} else {
-										item.counters_followers = 0;
-									}
-									
-									if(user.counters.subscriptions) {
-										item.counters_subscriptions = user.counters.subscriptions;
-									} else {
-										item.counters_subscriptions = 0;
-									}
-									
-									azbn.mdl('mysql').query("INSERT INTO `" + azbn.mdl('cfg').dbt.userhistory + "` SET ? ", item, function(err, result) {
-										if(result.insertId) {
-											azbn.echo('[ Inserted counters for user #' + user.id + ' ]', log_name);
+									if(rows.length == 1) {
+										var item = {
+											created_at : ds,
+											user_id : user.id || 0,
+										};
+										
+										if(user.counters.friends) {
+											item.counters_friends = user.counters.friends;
 										} else {
-											azbn.echo('[ Error on inserting counters for user #' + user.id + ' ]', log_name);
+											item.counters_friends = 0;
 										}
-									});
+										
+										if(user.counters.followers) {
+											item.counters_followers = user.counters.followers;
+										} else {
+											item.counters_followers = 0;
+										}
+										
+										if(user.counters.subscriptions) {
+											item.counters_subscriptions = user.counters.subscriptions;
+										} else {
+											item.counters_subscriptions = 0;
+										}
+										
+										azbn.mdl('mysql').query("INSERT INTO `" + azbn.mdl('cfg').dbt.userhistory + "` SET ? ", item, function(err, result) {
+											if(result.insertId) {
+												azbn.echo('[ Inserted counters for user #' + user.id + ' ]', log_name);
+											} else {
+												azbn.echo('[ Error on inserting counters for user #' + user.id + ' ]', log_name);
+											}
+										});
+									}
 									
 									azbn.mdl('mysql').query("UPDATE `" + azbn.mdl('cfg').dbt.userinfo + "` SET lastact = '" + ds + "', p = '" + p + "' WHERE user_id = '" + user.id + "'", function (err, uresult) {
 										azbn.echo('[ Updated info for user #' + user.id + ' ]', log_name);
