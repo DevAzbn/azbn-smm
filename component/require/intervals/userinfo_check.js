@@ -59,7 +59,7 @@ function _(azbn) {
 						
 						var vk = require('./../../vk')(azbn, h.app_id);
 						
-						vk.request('users.get', {'user_ids' : str , fields :'sex,city,country,photo_100,photo_200_orig,photo_200,photo_400_orig,photo_max,photo_max_orig,photo_id,last_seen,screen_name' }, function(resp) {
+						vk.request('users.get', {'user_ids' : str , fields :'sex,city,country,photo_100,photo_200_orig,photo_200,photo_400_orig,photo_max,photo_max_orig,photo_id,last_seen,screen_name,counters' }, function(resp) {
 							
 							if(azbn.is_def(resp.error) && !azbn.is_null(resp.error)) {
 								
@@ -73,6 +73,20 @@ function _(azbn) {
 								resp.response.forEach(function(user){
 									
 									var p = JSON.stringify(user);
+									
+									var item = {
+										created_at : ds,
+										user_id : user.id,
+										counters_friends : user.counters.friends,
+										counters_followers : user.counters.followers,
+										counters_subscriptions : user.counters.subscriptions,
+									};
+									
+									azbn.mdl('mysql').query("INSERT INTO `" + azbn.mdl('cfg').dbt.userhistory + "` SET ? ", item, function(err, result) {
+										if(result.insertId) {
+										} else {
+										}
+									});
 									
 									azbn.mdl('mysql').query("UPDATE `" + azbn.mdl('cfg').dbt.userinfo + "` SET lastact = '" + ds + "', p = '" + p + "' WHERE user_id = '" + user.id + "'", function (err, uresult) {
 										azbn.echo('[ Updated info for user #' + user.id + ' ]', log_name);

@@ -17,6 +17,8 @@ module.exports = {
 		invite2gr			: 'nodejs_vk_invite2gr',
 		invite2gr_log		: 'nodejs_vk_invite2gr_log',
 		
+		userhistory			: 'nodejs_vk_userhistory',
+		
 		telegrambot_notify	: 'nodejs_azbnodebot_notify',
 		
 		phonechecker		: 'nodejs_azbnodebot_phonechecker',
