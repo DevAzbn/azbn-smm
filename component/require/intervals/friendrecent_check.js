@@ -57,7 +57,7 @@ function _(azbn) {
 				
 				var o = {};
 				//o.sort = 1;
-				o.count = 200;
+				o.count = 333;
 				//o.online = 1;
 				
 				azbn.mdl('vkstream')
