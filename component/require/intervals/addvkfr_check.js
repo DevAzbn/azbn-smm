@@ -68,14 +68,31 @@ function _(azbn) {
 				vk.setToken(h.access_token);
 				
 				var o = JSON.parse(h.p) || {};
-				//o.sort = 1;
-				o.count = 100;
-				//o.online = 1;
+				var _method = '';
+				
+				switch(o.sort) {
+					
+					case 2:{
+						_method = 'friends.getSuggestions';
+						o = {
+							filter : 'mutual',
+							count : 200,
+						};
+					}
+					break;
+					
+					default:{
+						_method = 'users.search';
+						o.count = 200;
+					}
+					break;
+					
+				};
 				
 				azbn.mdl('vkstream')
 					.add(function(next){
 						
-						vk.request('users.search', o, function(resp) {
+						vk.request(_method, o, function(resp) {
 							
 							if(azbn.is_def(resp.error) && !azbn.is_null(resp.error)) {
 								
