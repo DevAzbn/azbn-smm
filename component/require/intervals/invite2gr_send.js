@@ -73,7 +73,9 @@ function _(azbn) {
 							
 							var user_id = h.p.friends[rand];
 							
-							vk.request('groups.invite', {'group_id' : h.p.group_id, 'user_id' : user_id, }, function(resp) { // user_id
+							var __req = {'group_id' : h.p.group_id, 'user_id' : user_id, };
+							
+							vk.request('groups.invite', __req, function(resp) { // user_id
 								//console.log(resp);
 								
 								azbn.mdl('nedb.log').insert({
@@ -81,7 +83,7 @@ function _(azbn) {
 									type : 'bot.vk.request',
 									user_id : h.user_id,
 									method : 'groups.invite',
-									req : {'group_id' : h.p.group_id, 'user_id' : user_id, },
+									req : __req,
 									resp : resp,
 								});
 								
@@ -121,14 +123,16 @@ function _(azbn) {
 												
 												} else {
 													
-													vk.request('groups.invite', {'group_id' : h.p.group_id, 'user_id' : user_id, captcha_sid : vkresp.error.captcha_sid, captcha_key : ctext, }, function(_vkresp) {
+													var __req2 = {'group_id' : h.p.group_id, 'user_id' : user_id, captcha_sid : vkresp.error.captcha_sid, captcha_key : ctext, };
+													
+													vk.request('groups.invite', __req2, function(_vkresp) {
 														
 														azbn.mdl('nedb.log').insert({
 															created_at : azbn.now(),
 															type : 'bot.vk.request',
 															user_id : h.user_id,
 															method : 'groups.invite',
-															req : {'group_id' : h.p.group_id, 'user_id' : user_id, captcha_sid : vkresp.error.captcha_sid, captcha_key : ctext, },
+															req : __req2,
 															resp : _vkresp,
 														});
 														

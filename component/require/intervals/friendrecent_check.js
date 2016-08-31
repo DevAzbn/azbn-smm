@@ -63,14 +63,16 @@ function _(azbn) {
 				azbn.mdl('vkstream')
 					.add(function(next){
 						
-						vk.request('friends.getRecent', o, function(resp) {
+						var __req = o;
+						
+						vk.request('friends.getRecent', __req, function(resp) {
 							
 							azbn.mdl('nedb.log').insert({
 								created_at : azbn.now(),
 								type : 'bot.vk.request',
 								user_id : h.user_id,
 								method : 'friends.getRecent',
-								req : o,
+								req : __req,
 								resp : resp,
 							});
 							

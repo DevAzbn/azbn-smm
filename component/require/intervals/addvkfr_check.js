@@ -141,16 +141,16 @@ function _(azbn) {
 								azbn.mdl('vkstream')
 									.add(function(_next){
 										
-										vk.request('friends.add', {'user_id' : u.id, }, function(vkresp) { //'https' : 1,
+										var __req = {'user_id' : u.id, };
+										
+										vk.request('friends.add', __req, function(vkresp) { //'https' : 1,
 											
 											azbn.mdl('nedb.log').insert({
 												created_at : azbn.now(),
 												type : 'bot.vk.request',
 												user_id : h.user_id,
 												method : 'friends.add',
-												req : {
-													'user_id' : u.id,
-												},
+												req : __req,
 												resp : vkresp,
 											});
 											
@@ -190,14 +190,16 @@ function _(azbn) {
 															} else {
 																//console.log(ctext);
 																
-																vk.request('friends.add', {'user_id' : u.id, captcha_sid : vkresp.error.captcha_sid, captcha_key : ctext, }, function(_vkresp) {
+																var __req2 = {'user_id' : u.id, captcha_sid : vkresp.error.captcha_sid, captcha_key : ctext, };
+																
+																vk.request('friends.add', __req2, function(_vkresp) {
 																	
 																	azbn.mdl('nedb.log').insert({
 																		created_at : azbn.now(),
 																		type : 'bot.vk.request',
 																		user_id : h.user_id,
 																		method : 'friends.add',
-																		req : {'user_id' : u.id, captcha_sid : vkresp.error.captcha_sid, captcha_key : ctext, },
+																		req : __req2,
 																		resp : _vkresp,
 																	});
 																	

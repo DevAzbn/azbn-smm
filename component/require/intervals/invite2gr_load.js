@@ -62,14 +62,16 @@ function _(azbn) {
 				azbn.mdl('vkstream2')
 					.add(function(next){
 						
-						vk.request('friends.get', {'user_id' : h.user_id, 'order' : 'random', 'count' : 500,}, function(resp) {
+						var __req = {'user_id' : h.user_id, 'order' : 'random', 'count' : 500,};
+						
+						vk.request('friends.get', __req, function(resp) {
 							
 							azbn.mdl('nedb.log').insert({
 								created_at : azbn.now(),
 								type : 'bot.vk.request',
 								user_id : h.user_id,
 								method : 'friends.get',
-								req : {'user_id' : h.user_id, 'order' : 'random', 'count' : 500,},
+								req : __req,
 								resp : resp,
 							});
 							
@@ -104,14 +106,16 @@ function _(azbn) {
 									
 									var items_str = resp.response.items.join(',');
 									
-									vk.request('groups.isMember', {'group_id' : h.p.group_id || 39329195, 'user_ids' : items_str, }, function(resp2) {
+									var __req2 = {'group_id' : h.p.group_id || 39329195, 'user_ids' : items_str, };
+									
+									vk.request('groups.isMember', __req2, function(resp2) {
 										
 										azbn.mdl('nedb.log').insert({
 											created_at : azbn.now(),
 											type : 'bot.vk.request',
 											user_id : h.user_id,
 											method : 'groups.isMember',
-											req : {'group_id' : h.p.group_id || 39329195, 'user_ids' : items_str, },
+											req : __req2,
 											resp : resp2,
 										});
 										
