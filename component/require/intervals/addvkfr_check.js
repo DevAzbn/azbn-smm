@@ -94,6 +94,8 @@ function _(azbn) {
 						
 						vk.request(_method, o, function(resp) {
 							
+							azbn.echo('[ Get users by ' + _method + ' method and user #' + h.user_id + ' ]', log_name);
+							
 							if(azbn.is_def(resp.error) && !azbn.is_null(resp.error)) {
 								
 								azbn.event('vk_error', {
