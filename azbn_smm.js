@@ -25,16 +25,26 @@ azbn.load('fs', require('fs'));
 //azbn.load('querystring', require('querystring'));
 //azbn.load('path', require('path'));
 azbn.load('url', require('url'));
+
 azbn.load('cfg', require(cfg.path.app + '/config'));
 azbn.load('mysql', require(cfg.path.app + '/mysql'));
 azbn.load('tg', require(cfg.path.app + '/telegrambot'));
 azbn.load('vk', require(cfg.path.app + '/vk'));
+
+var NeDB = require('nedb');
+azbn.load('nedb.log', new NeDB({filename : 'log/nedb_log'}));
+azbn.mdl('nedb.log').loadDatabase();
 
 azbn.event('loaded_mdls', azbn);
 
 /* --------- Код здесь --------- */
 
 //azbn.echo(azbn.mdl('cfg').vk.appId);
+
+azbn.mdl('nedb.log').insert({
+	created_at : azbn.now(),
+	type : 'bot.start',
+});
 
 azbn.mdl('mysql').connect(function(err){
 	
@@ -44,7 +54,7 @@ azbn.mdl('mysql').connect(function(err){
 		
 	} else {
 		
-		azbn.echo('DB is connected');  
+		azbn.echo('DB is connected');
 		
 		var Antigate = require('antigate');
 		azbn.load('ag', new Antigate(azbn.mdl('cfg').antigate_key));
@@ -87,6 +97,12 @@ azbn.mdl('mysql').connect(function(err){
 		
 		
 		azbn.mdl('tg').getMe().then(function(me) {
+			
+			azbn.mdl('nedb.log').insert({
+				created_at : azbn.now(),
+				type : 'bot.tg.getMe',
+			});
+			
 			require(cfg.path.app + '/require/telegram/tg_getMe')(azbn, me);
 			
 			azbn.mdl('tg').sendMessage(-107139655, 'Бот ' + me.username + ' в сети', {

@@ -14,6 +14,7 @@
     "cluster": "*",
     "mysql": "^2.9.0",
     "ncp": "*",
+    "nedb": "^1.8.0",
     "node-telegram-bot-api": "^0.21.1",
     "nodemailer": "^2.4.2",
     "request": "*",
