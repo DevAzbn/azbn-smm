@@ -111,6 +111,10 @@ function _(azbn) {
 											resp : resp,
 										});
 										
+										azbn.mdl('mysql').query("UPDATE `" + azbn.mdl('cfg').dbt.addvkfr_log + "` SET success_at = '" + (- ds) + "' WHERE id = '" + _fr.id + "'", function (err, uresult) {
+											azbn.echo('[ Updated addvkfr_log for unaddvkfr-user #' + h.user_id + ' ]', log_name);
+										});
+										
 										if(azbn.is_def(resp.error) && !azbn.is_null(resp.error)) {
 											
 											azbn.event('vk_error', {
@@ -121,9 +125,7 @@ function _(azbn) {
 										} else {
 											
 											if(resp.response.out_request_deleted) {
-												azbn.mdl('mysql').query("UPDATE `" + azbn.mdl('cfg').dbt.addvkfr_log + "` SET success_at = '" + (-ds) + "' WHERE id = '" + _fr.id + "'", function (err, uresult) {
-													azbn.echo('[ Updated addvkfr_log for unaddvkfr-user #' + h.user_id + ' ]', log_name);
-												});
+												
 											}
 											
 										}
