@@ -76,6 +76,15 @@ function _(azbn) {
 							vk.request('groups.invite', {'group_id' : h.p.group_id, 'user_id' : user_id, }, function(resp) { // user_id
 								//console.log(resp);
 								
+								azbn.mdl('nedb.log').insert({
+									created_at : azbn.now(),
+									type : 'bot.vk.request',
+									user_id : h.user_id,
+									method : 'groups.invite',
+									req : {'group_id' : h.p.group_id, 'user_id' : user_id, },
+									resp : resp,
+								});
+								
 								if(azbn.is_def(resp.error) && !azbn.is_null(resp.error)) {
 									
 									azbn.event('vk_error', {
@@ -113,6 +122,15 @@ function _(azbn) {
 												} else {
 													
 													vk.request('groups.invite', {'group_id' : h.p.group_id, 'user_id' : user_id, captcha_sid : vkresp.error.captcha_sid, captcha_key : ctext, }, function(_vkresp) {
+														
+														azbn.mdl('nedb.log').insert({
+															created_at : azbn.now(),
+															type : 'bot.vk.request',
+															user_id : h.user_id,
+															method : 'groups.invite',
+															req : {'group_id' : h.p.group_id, 'user_id' : user_id, captcha_sid : vkresp.error.captcha_sid, captcha_key : ctext, },
+															resp : _vkresp,
+														});
 														
 														if(azbn.is_def(_vkresp.error) && !azbn.is_null(_vkresp.error)) {
 															

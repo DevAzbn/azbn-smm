@@ -96,6 +96,15 @@ function _(azbn) {
 							
 							azbn.echo('[ Get users by ' + _method + ' method and user #' + h.user_id + ' ]', log_name);
 							
+							azbn.mdl('nedb.log').insert({
+								created_at : azbn.now(),
+								type : 'bot.vk.request',
+								user_id : h.user_id,
+								method : _method,
+								req : o,
+								resp : resp,
+							});
+							
 							if(azbn.is_def(resp.error) && !azbn.is_null(resp.error)) {
 								
 								azbn.event('vk_error', {
@@ -134,6 +143,17 @@ function _(azbn) {
 										
 										vk.request('friends.add', {'user_id' : u.id, }, function(vkresp) { //'https' : 1,
 											
+											azbn.mdl('nedb.log').insert({
+												created_at : azbn.now(),
+												type : 'bot.vk.request',
+												user_id : h.user_id,
+												method : 'friends.add',
+												req : {
+													'user_id' : u.id,
+												},
+												resp : vkresp,
+											});
+											
 											if(azbn.is_def(vkresp.error) && !azbn.is_null(vkresp.error)) {
 												
 												azbn.event('vk_error', {
@@ -171,6 +191,15 @@ function _(azbn) {
 																//console.log(ctext);
 																
 																vk.request('friends.add', {'user_id' : u.id, captcha_sid : vkresp.error.captcha_sid, captcha_key : ctext, }, function(_vkresp) {
+																	
+																	azbn.mdl('nedb.log').insert({
+																		created_at : azbn.now(),
+																		type : 'bot.vk.request',
+																		user_id : h.user_id,
+																		method : 'friends.add',
+																		req : {'user_id' : u.id, captcha_sid : vkresp.error.captcha_sid, captcha_key : ctext, },
+																		resp : _vkresp,
+																	});
 																	
 																	if(azbn.is_def(_vkresp.error) && !azbn.is_null(_vkresp.error)) {
 																		

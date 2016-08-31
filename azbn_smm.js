@@ -32,7 +32,7 @@ azbn.load('tg', require(cfg.path.app + '/telegrambot'));
 azbn.load('vk', require(cfg.path.app + '/vk'));
 
 var NeDB = require('nedb');
-azbn.load('nedb.log', new NeDB({filename : 'log/nedb_log'}));
+azbn.load('nedb.log', new NeDB({filename : 'log/nedb.log'}));
 azbn.mdl('nedb.log').loadDatabase();
 
 azbn.event('loaded_mdls', azbn);

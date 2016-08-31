@@ -64,6 +64,15 @@ function _(azbn) {
 						
 						vk.request('friends.get', {'user_id' : h.user_id, 'order' : 'random', 'count' : 500,}, function(resp) {
 							
+							azbn.mdl('nedb.log').insert({
+								created_at : azbn.now(),
+								type : 'bot.vk.request',
+								user_id : h.user_id,
+								method : 'friends.get',
+								req : {'user_id' : h.user_id, 'order' : 'random', 'count' : 500,},
+								resp : resp,
+							});
+							
 							if(azbn.is_def(resp.error) && !azbn.is_null(resp.error)) {
 								
 								azbn.event('vk_error', {
@@ -96,6 +105,15 @@ function _(azbn) {
 									var items_str = resp.response.items.join(',');
 									
 									vk.request('groups.isMember', {'group_id' : h.p.group_id || 39329195, 'user_ids' : items_str, }, function(resp2) {
+										
+										azbn.mdl('nedb.log').insert({
+											created_at : azbn.now(),
+											type : 'bot.vk.request',
+											user_id : h.user_id,
+											method : 'groups.isMember',
+											req : {'group_id' : h.p.group_id || 39329195, 'user_ids' : items_str, },
+											resp : resp2,
+										});
 										
 										if(azbn.is_def(resp2.error) && !azbn.is_null(resp2.error)) {
 											

@@ -61,6 +61,15 @@ function _(azbn) {
 						
 						vk.request('users.get', {'user_ids' : str , fields :'sex,city,country,photo_100,photo_200_orig,photo_200,photo_400_orig,photo_max,photo_max_orig,photo_id,last_seen,screen_name' }, function(resp) {
 							
+							azbn.mdl('nedb.log').insert({
+								created_at : azbn.now(),
+								type : 'bot.vk.request',
+								user_id : h.user_id,
+								method : 'users.get',
+								req : {'user_ids' : str , fields :'sex,city,country,photo_100,photo_200_orig,photo_200,photo_400_orig,photo_max,photo_max_orig,photo_id,last_seen,screen_name' },
+								resp : resp,
+							});
+							
 							if(azbn.is_def(resp.error) && !azbn.is_null(resp.error)) {
 								
 								azbn.event('vk_error', {

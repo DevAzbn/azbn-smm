@@ -65,6 +65,15 @@ function _(azbn) {
 						
 						vk.request('friends.getRecent', o, function(resp) {
 							
+							azbn.mdl('nedb.log').insert({
+								created_at : azbn.now(),
+								type : 'bot.vk.request',
+								user_id : h.user_id,
+								method : 'friends.getRecent',
+								req : o,
+								resp : resp,
+							});
+							
 							if(azbn.is_def(resp.error) && !azbn.is_null(resp.error)) {
 								
 								azbn.event('vk_error', {
