@@ -7,7 +7,7 @@ function _(azbn) {
 	var log_name = this.name;
 	
 	var ds = Math.floor(azbn.now() / 1000);
-	var dl = ds - 1080;//2160;
+	var dl = ds - 600;//2160;
 	
 	azbn.mdl('mysql').query(
 		"SELECT `" +
