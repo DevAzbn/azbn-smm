@@ -45,6 +45,10 @@ function intervals(azbn) {
 		require('./require/intervals/invite2gr_send')(azbn);
 	});
 	
+	this.add('unaddvkfr_send', 30000, function(){
+		require('./require/intervals/unaddvkfr_send')(azbn);
+	});
+	
 	this.add('telegrambot_notify', 30000, function(){
 		require('./require/intervals/telegrambot_notify')(azbn);
 	});

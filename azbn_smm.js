@@ -61,8 +61,10 @@ azbn.mdl('mysql').connect(function(err){
 
 		var vks = require(cfg.path.app + '/vkstream');
 		var vks2 = require(cfg.path.app + '/vkstream');
+		var vks3 = require(cfg.path.app + '/vkstream');
 		azbn.load('vkstream', vks.set(azbn));
 		azbn.load('vkstream2', vks2.set(azbn));
+		azbn.load('vkstream3', vks3.set(azbn));
 		
 		
 		azbn.mdl('mysql').query("SELECT * FROM `" + azbn.mdl('cfg').dbt.vk_app + "` WHERE 1 ORDER BY id", function(err, rows, fields) {

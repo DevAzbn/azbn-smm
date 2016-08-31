@@ -16,6 +16,8 @@ module.exports = {
 		addvkfr_log			: 'nodejs_vk_addvkfr_log',
 		invite2gr			: 'nodejs_vk_invite2gr',
 		invite2gr_log		: 'nodejs_vk_invite2gr_log',
+		unaddvkfr			: 'nodejs_vk_unaddvkfr',
+		unaddvkfr_log		: 'nodejs_vk_unaddvkfr_log',
 		
 		userhistory			: 'nodejs_vk_userhistory',
 		
