@@ -131,7 +131,7 @@ function _(azbn) {
 											
 										} else {
 											
-											if(resp2.response.count) {
+											if(resp2.response.length) {
 												
 												var items = [];
 												for(var i in resp2.response) {
@@ -146,7 +146,7 @@ function _(azbn) {
 												var items_str = items.join(',');
 												
 												azbn.mdl('mysql').query("UPDATE `" + azbn.mdl('cfg').dbt.invite2gr_log + "` SET success_at = '" + ds + "' WHERE user_id = '" + h.user_id + "' AND to_user_id IN (" + items_str + ") AND success_at = 0", function (__err, uresult) { //lastact = '" + ds + "', 
-													azbn.echo("UPDATE `" + azbn.mdl('cfg').dbt.invite2gr_log + "` SET success_at = '" + ds + "' WHERE user_id = '" + h.user_id + "' AND to_user_id IN (" + items_str + ") AND success_at = 0", log_name);
+													azbn.echo('[ Updated invite2gr_log for invite2gr-user #' + h.user_id + ' ]', log_name);
 												});
 												
 											}
