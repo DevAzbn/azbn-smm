@@ -41,6 +41,11 @@ function intervals(azbn) {
 		require('./require/intervals/invite2gr_load')(azbn);
 	});
 	
+	require('./require/intervals/invite2gr_check')(azbn);
+	this.add('invite2gr_load', 86400000 / 2, function(){
+		require('./require/intervals/invite2gr_check')(azbn);
+	});
+	
 	this.add('invite2gr_send', 30000, function(){
 		require('./require/intervals/invite2gr_send')(azbn);
 	});
