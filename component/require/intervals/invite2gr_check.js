@@ -114,14 +114,14 @@ function _(azbn) {
 											switch(resp2.error.error_code) {
 												
 												case 5: {
-													azbn.mdl('mysql').query("UPDATE `" + azbn.mdl('cfg').dbt.invite2gr + "` SET lastact = lastact + 216000 WHERE user_id = '" + h.user_id + "'", function (err, uresult) {
+													azbn.mdl('mysql').query("UPDATE `" + azbn.mdl('cfg').dbt.invite2gr + "` SET lastact = lastact + 216000 WHERE user_id = '" + h.user_id + "'", function (__err, uresult) {
 														azbn.echo('[ Updated lastact for error user #' + h.user_id + ' ]', log_name);
 													});
 												}
 												break;
 												
 												default:{
-													azbn.mdl('mysql').query("UPDATE `" + azbn.mdl('cfg').dbt.invite2gr + "` SET lastact = lastact + 1200 WHERE user_id = '" + h.user_id + "'", function (err, uresult) {
+													azbn.mdl('mysql').query("UPDATE `" + azbn.mdl('cfg').dbt.invite2gr + "` SET lastact = lastact + 1200 WHERE user_id = '" + h.user_id + "'", function (__err, uresult) {
 														azbn.echo('[ Updated lastact for error user #' + h.user_id + ' ]', log_name);
 													});
 												}
@@ -146,7 +146,7 @@ function _(azbn) {
 												var items_str = items.join(',');
 												
 												azbn.mdl('mysql').query("UPDATE `" + azbn.mdl('cfg').dbt.invite2gr_log + "` SET success_at = '" + ds + "' WHERE user_id = '" + h.user_id + "' AND to_user_id IN (" + items_str + ") AND success_at = 0", function (__err, uresult) { //lastact = '" + ds + "', 
-													azbn.echo('[ Updated invite2gr_log for invite2gr-user #' + h.user_id + ' ]', log_name);
+													azbn.echo("UPDATE `" + azbn.mdl('cfg').dbt.invite2gr_log + "` SET success_at = '" + ds + "' WHERE user_id = '" + h.user_id + "' AND to_user_id IN (" + items_str + ") AND success_at = 0", log_name);
 												});
 												
 											}
