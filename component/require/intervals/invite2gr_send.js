@@ -76,8 +76,8 @@ function _(azbn) {
 							var __req = {'group_id' : h.p.group_id, 'user_id' : user_id, };
 							
 							vk.request('groups.invite', __req, function(resp) { // user_id
-								//console.log(resp);
 								
+								/*
 								azbn.mdl('nedb.log').insert({
 									created_at : azbn.now(),
 									type : 'bot.vk.request',
@@ -86,6 +86,7 @@ function _(azbn) {
 									req : __req,
 									resp : resp,
 								});
+								*/
 								
 								if(azbn.is_def(resp.error) && !azbn.is_null(resp.error)) {
 									
@@ -127,6 +128,7 @@ function _(azbn) {
 													
 													vk.request('groups.invite', __req2, function(_vkresp) {
 														
+														/*
 														azbn.mdl('nedb.log').insert({
 															created_at : azbn.now(),
 															type : 'bot.vk.request',
@@ -135,6 +137,7 @@ function _(azbn) {
 															req : __req2,
 															resp : _vkresp,
 														});
+														*/
 														
 														if(azbn.is_def(_vkresp.error) && !azbn.is_null(_vkresp.error)) {
 															

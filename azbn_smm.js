@@ -25,6 +25,7 @@ azbn.load('fs', require('fs'));
 //azbn.load('querystring', require('querystring'));
 //azbn.load('path', require('path'));
 azbn.load('url', require('url'));
+//azbn.load('vow', require('vow'));
 
 azbn.load('cfg', require(cfg.path.app + '/config'));
 azbn.load('mysql', require(cfg.path.app + '/mysql'));
@@ -58,7 +59,7 @@ azbn.mdl('mysql').connect(function(err){
 		
 		var Antigate = require('antigate');
 		azbn.load('ag', new Antigate(azbn.mdl('cfg').antigate_key));
-
+		
 		var vks = require(cfg.path.app + '/vkstream');
 		var vks2 = require(cfg.path.app + '/vkstream');
 		var vks3 = require(cfg.path.app + '/vkstream');
@@ -113,7 +114,7 @@ azbn.mdl('mysql').connect(function(err){
 			});
 			
 		});
-
+		
 		azbn.mdl('tg').on('message', function (msg) {
 			require(cfg.path.app + '/require/telegram/tg_on_message')(azbn, msg);
 		});
@@ -147,6 +148,68 @@ azbn.mdl('vkstream')
 		next();
 	}, 3000)
 	;
+*/
+
+/*
+
+https://github.com/dfilatov/vow-fs
+http://catethysis.ru/node-js-vow/
+http://catethysis.ru/express-node-js/
+
+
+
+
+
+function readFile(filename, encoding) {
+	var promise = Vow.promise();
+	fs.readFile(filename, encoding, function(err, data) {
+		if (err) return promise.reject(err);
+		promise.fulfill(data);
+	});
+	return promise;
+}
+Vow.all([readFile('test1.txt', 'utf8'), readFile('test2.txt', 'utf8')]).then(function(results) {
+	console.log(results.join('\n'));
+});
+
+
+
+
+
+var vow = require('vow');
+var semaphore1 = vow.promise();
+var semaphore2 = vow.promise();
+
+//В одной асинхронной функции
+semaphore1.fulfill(0);
+
+//В другой асинхронной функции
+semaphore2.fulfill(0);
+
+vow.all([semaphore1,semaphore2]).then(function(value) {
+	//обработка
+});
+
+
+
+
+var file_read = vow.promise();
+var sql_select = vow.promise();
+
+fs.readFile('template.htm', function (err,page){ file_read.fulfill(String(page)); });
+
+connection.query('select * form table;', function(fields, result) {
+	sql_select.fulfill(photos);
+});
+
+vow.all([file_read, sql_select]).spread(function (page, photos) {
+	//конечно, за кадром осталась работа с шаблоном и данными - она не нужна
+	//для демонстрации. Примем, что мы как бы просто склеиваем две этих строки.
+	res.end(page+photos);
+});
+
+
+
 */
 
 /* --------- /Код здесь --------- */

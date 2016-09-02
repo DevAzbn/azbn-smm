@@ -19,6 +19,7 @@
     "nodemailer": "^2.4.2",
     "request": "*",
     "vksdk": "^5.2.0",
+    "vow": "^0.4.12",
     "ws": "*"
   },
   "repository": {

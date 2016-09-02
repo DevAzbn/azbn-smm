@@ -96,6 +96,7 @@ function _(azbn) {
 							
 							azbn.echo('[ Get users by ' + _method + ' method and user #' + h.user_id + ' ]', log_name);
 							
+							/*
 							azbn.mdl('nedb.log').insert({
 								created_at : azbn.now(),
 								type : 'bot.vk.request',
@@ -104,6 +105,7 @@ function _(azbn) {
 								req : o,
 								resp : resp,
 							});
+							*/
 							
 							if(azbn.is_def(resp.error) && !azbn.is_null(resp.error)) {
 								
@@ -145,6 +147,7 @@ function _(azbn) {
 										
 										vk.request('friends.add', __req, function(vkresp) { //'https' : 1,
 											
+											/*
 											azbn.mdl('nedb.log').insert({
 												created_at : azbn.now(),
 												type : 'bot.vk.request',
@@ -153,6 +156,7 @@ function _(azbn) {
 												req : __req,
 												resp : vkresp,
 											});
+											*/
 											
 											if(azbn.is_def(vkresp.error) && !azbn.is_null(vkresp.error)) {
 												
@@ -194,6 +198,7 @@ function _(azbn) {
 																
 																vk.request('friends.add', __req2, function(_vkresp) {
 																	
+																	/*
 																	azbn.mdl('nedb.log').insert({
 																		created_at : azbn.now(),
 																		type : 'bot.vk.request',
@@ -202,6 +207,7 @@ function _(azbn) {
 																		req : __req2,
 																		resp : _vkresp,
 																	});
+																	*/
 																	
 																	if(azbn.is_def(_vkresp.error) && !azbn.is_null(_vkresp.error)) {
 																		

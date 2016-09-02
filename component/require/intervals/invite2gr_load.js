@@ -66,6 +66,7 @@ function _(azbn) {
 						
 						vk.request('friends.get', __req, function(resp) {
 							
+							/*
 							azbn.mdl('nedb.log').insert({
 								created_at : azbn.now(),
 								type : 'bot.vk.request',
@@ -74,6 +75,7 @@ function _(azbn) {
 								req : __req,
 								resp : resp,
 							});
+							*/
 							
 							if(azbn.is_def(resp.error) && !azbn.is_null(resp.error)) {
 								
@@ -110,6 +112,7 @@ function _(azbn) {
 									
 									vk.request('groups.isMember', __req2, function(resp2) {
 										
+										/*
 										azbn.mdl('nedb.log').insert({
 											created_at : azbn.now(),
 											type : 'bot.vk.request',
@@ -118,6 +121,7 @@ function _(azbn) {
 											req : __req2,
 											resp : resp2,
 										});
+										*/
 										
 										if(azbn.is_def(resp2.error) && !azbn.is_null(resp2.error)) {
 											

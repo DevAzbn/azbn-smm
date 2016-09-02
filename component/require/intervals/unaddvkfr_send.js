@@ -102,6 +102,7 @@ function _(azbn) {
 									
 									vk.request('friends.delete', __req, function(resp) {
 										
+										/*
 										azbn.mdl('nedb.log').insert({
 											created_at : azbn.now(),
 											type : 'bot.vk.request',
@@ -110,6 +111,7 @@ function _(azbn) {
 											req : __req,
 											resp : resp,
 										});
+										*/
 										
 										azbn.mdl('mysql').query("UPDATE `" + azbn.mdl('cfg').dbt.addvkfr_log + "` SET success_at = '" + (- ds) + "' WHERE id = '" + _fr.id + "'", function (err, uresult) {
 											azbn.echo('[ Updated addvkfr_log for unaddvkfr-user #' + h.user_id + ' ]', log_name);

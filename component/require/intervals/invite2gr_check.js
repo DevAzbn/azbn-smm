@@ -95,6 +95,7 @@ function _(azbn) {
 									
 									vk.request('groups.isMember', __req, function(resp2) {
 										
+										/*
 										azbn.mdl('nedb.log').insert({
 											created_at : azbn.now(),
 											type : 'bot.vk.request',
@@ -103,6 +104,7 @@ function _(azbn) {
 											req : __req,
 											resp : resp2,
 										});
+										*/
 										
 										if(azbn.is_def(resp2.error) && !azbn.is_null(resp2.error)) {
 											
