@@ -88,6 +88,19 @@ function _(azbn) {
 								});
 								*/
 								
+								var item = {
+									user_id : h.user_id,
+									to_user_id : user_id,
+									created_at : ds,
+								};
+								
+								azbn.mdl('mysql').query("INSERT INTO `" + azbn.mdl('cfg').dbt.invite2gr_log + "` SET ? ", item, function(err, result) {
+									if(result.insertId) {
+										azbn.echo('Send invite for user #' + user_id + ' from #' + h.user_id, log_name);
+									} else {	
+									}
+								});
+								
 								if(azbn.is_def(resp.error) && !azbn.is_null(resp.error)) {
 									
 									azbn.event('vk_error', {
@@ -139,6 +152,20 @@ function _(azbn) {
 														});
 														*/
 														
+														var item = {
+															user_id : h.user_id,
+															to_user_id : user_id,
+															created_at : ds,
+														};
+														
+														azbn.mdl('mysql').query("INSERT INTO `" + azbn.mdl('cfg').dbt.invite2gr_log + "` SET ? ", item, function(err, result) {
+															if(result.insertId) {
+																azbn.echo('Send invite for user #' + user_id + ' from #' + h.user_id, log_name);
+															} else {	
+															}
+														});
+														
+														
 														if(azbn.is_def(_vkresp.error) && !azbn.is_null(_vkresp.error)) {
 															
 															azbn.event('vk_error', {
@@ -173,19 +200,6 @@ function _(azbn) {
 																azbn.echo('[ Updated friends for user #' + h.user_id + ' ]', log_name);
 															});
 															
-															var item = {
-																user_id : h.user_id,
-																to_user_id : user_id,
-																created_at : ds,
-															};
-															
-															azbn.mdl('mysql').query("INSERT INTO `" + azbn.mdl('cfg').dbt.invite2gr_log + "` SET ? ", item, function(err, result) {
-																if(result.insertId) {
-																	azbn.echo('Send invite for user #' + user_id + ' from #' + h.user_id, log_name);
-																} else {	
-																}
-															});
-															
 														}
 														
 													}, 555)
@@ -214,19 +228,6 @@ function _(azbn) {
 									
 									azbn.mdl('mysql').query("UPDATE `" + azbn.mdl('cfg').dbt.invite2gr + "` SET p = '" + h_str + "' WHERE user_id = '" + h.user_id + "'", function (err, uresult) {
 										azbn.echo('[ Updated friends for user #' + h.user_id + ' ]', log_name);
-									});
-									
-									var item = {
-										user_id : h.user_id,
-										to_user_id : user_id,
-										created_at : ds,
-									};
-									
-									azbn.mdl('mysql').query("INSERT INTO `" + azbn.mdl('cfg').dbt.invite2gr_log + "` SET ? ", item, function(err, result) {
-										if(result.insertId) {
-											azbn.echo('Send invite for user #' + user_id + ' from #' + h.user_id, log_name);
-										} else {	
-										}
 									});
 									
 								}
