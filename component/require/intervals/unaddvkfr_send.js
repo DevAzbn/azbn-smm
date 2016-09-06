@@ -122,6 +122,7 @@ function _(azbn) {
 											azbn.event('vk_error', {
 												error : resp.error,
 												user_id : h.user_id,
+												method : 'friends.delete',
 											});
 											
 										} else {

@@ -111,6 +111,7 @@ function _(azbn) {
 											azbn.event('vk_error', {
 												error : resp2.error,
 												user_id : h.user_id,
+												method : 'groups.isMember',
 											});
 											
 											switch(resp2.error.error_code) {

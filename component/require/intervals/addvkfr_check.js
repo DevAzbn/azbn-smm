@@ -112,6 +112,7 @@ function _(azbn) {
 								azbn.event('vk_error', {
 									error : resp.error,
 									user_id : h.user_id,
+									method : _method,
 								});
 								
 								switch(resp.error.error_code) {
@@ -163,6 +164,7 @@ function _(azbn) {
 												azbn.event('vk_error', {
 													error : vkresp.error,
 													user_id : h.user_id,
+													method : 'friends.add',
 												});
 												
 												switch(vkresp.error.error_code) {
@@ -189,6 +191,7 @@ function _(azbn) {
 																		error : error,
 																	},
 																	user_id : h.user_id,
+																	method : 'antigate error',
 																});
 																
 															} else {
@@ -214,6 +217,7 @@ function _(azbn) {
 																		azbn.event('vk_error', {
 																			error : _vkresp.error,
 																			user_id : h.user_id,
+																			method : 'friends.add',
 																		});
 																		
 																		switch(_vkresp.error.error_code) {

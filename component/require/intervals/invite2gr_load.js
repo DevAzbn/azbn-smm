@@ -82,6 +82,7 @@ function _(azbn) {
 								azbn.event('vk_error', {
 									error : resp.error,
 									user_id : h.user_id,
+									method : 'friends.get',
 								});
 								
 								switch(resp.error.error_code) {
@@ -128,6 +129,7 @@ function _(azbn) {
 											azbn.event('vk_error', {
 												error : resp2.error,
 												user_id : h.user_id,
+												method : 'groups.isMember',
 											});
 											
 											switch(resp2.error.error_code) {
