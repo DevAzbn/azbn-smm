@@ -15,7 +15,7 @@ function genVK(azbn, appId) {
 		'appSecret' :	app.appSecret,
 		'https'		:	true,
 		'secure'	:	true,
-		'version'	: 	'5.53',
+		'version'	: 	'5.60',
 		'language'	:	app.language,
 	});
 
