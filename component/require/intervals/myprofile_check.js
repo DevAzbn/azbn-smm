@@ -96,11 +96,11 @@ function _(azbn) {
 										item.counters_subscriptions = 0;
 									}
 									
-									azbn.mdl('mysql').query("INSERT INTO `" + azbn.mdl('cfg').dbt.userhistory + "` SET ? ", item, function(err, result) {
-										if(result.insertId) {
+									azbn.mdl('mysql').query("INSERT INTO `" + azbn.mdl('cfg').dbt.userhistory + "` SET ? ", item, function(_err, result) {
+										if(result && result.insertId) {
 											azbn.echo('[ Inserted counters for user #' + user.id + ' ]', log_name);
 										} else {
-											azbn.echo('[ Error on inserting counters for user #' + user.id + ' ]', log_name);
+											azbn.echo('[ Error on inserting counters for user #' + user.id + ' ] ' + _err, log_name);
 										}
 									});
 									

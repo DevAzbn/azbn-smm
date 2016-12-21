@@ -7,8 +7,7 @@ module.exports = {
 	name : 'AzbNode',
 	
 	echo : function(text, tag) {
-		var str = tag||this.name;
-		console.log(str + ': ' + text);
+		console.log(this.now() + ': ' + (tag||this.name) + ': ' + text);
 	},
 	
 	len :function(arr) {
