@@ -47,7 +47,7 @@ function _(azbn) {
 						
 						vk.request('users.get', __req, function(resp) {
 							
-							/*
+							
 							azbn.mdl('nedb.log').insert({
 								created_at : azbn.now(),
 								type : 'bot.vk.request',
@@ -56,7 +56,7 @@ function _(azbn) {
 								req : __req,
 								resp : resp,
 							});
-							*/
+							
 							
 							if(azbn.is_def(resp.error) && !azbn.is_null(resp.error)) {
 								

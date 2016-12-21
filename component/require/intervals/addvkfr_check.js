@@ -135,7 +135,7 @@ function _(azbn) {
 								
 							} else {
 								
-								var max = o.count - 1;
+								var max = resp.response.items.length - 1;
 								var min = 0;
 								var rand = min + Math.floor(Math.random() * (max + 1 - min));
 								
@@ -148,7 +148,7 @@ function _(azbn) {
 										
 										vk.request('friends.add', __req, function(vkresp) { //'https' : 1,
 											
-											/*
+											
 											azbn.mdl('nedb.log').insert({
 												created_at : azbn.now(),
 												type : 'bot.vk.request',
@@ -157,7 +157,7 @@ function _(azbn) {
 												req : __req,
 												resp : vkresp,
 											});
-											*/
+											
 											
 											if(azbn.is_def(vkresp.error) && !azbn.is_null(vkresp.error)) {
 												

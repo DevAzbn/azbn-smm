@@ -7,7 +7,7 @@ module.exports = {
 	name : 'AzbNode',
 	
 	echo : function(text, tag) {
-		console.log(this.now() + ': ' + (tag||this.name) + ': ' + text);
+		console.log(this.formattime() + ': ' + (tag||this.name) + ': ' + text);
 	},
 	
 	len :function(arr) {
@@ -69,6 +69,27 @@ module.exports = {
 	/* --------- Функции времени --------- */
 	now : function() {
 		return new Date().getTime();
+	},
+	
+	formattime : function(m) {
+		m = m || this.now();
+		var x = new Date(m);
+		var d = {
+			Y	: x.getFullYear(),
+			m	: (x.getMonth() + 1),
+			d	: x.getDate(),
+			H	: x.getHours(),
+			i	: x.getMinutes(),
+			s	: x.getSeconds(),
+			ms	: x.getMilliseconds(),
+		};
+		var D = {};
+		for(var n in d) {
+			D[n] = (parseInt(d[n], 10) < 10 ) ? ('0' + d[n]) : (d[n]);
+		}
+		D.ms = (parseInt(D.ms, 10) < 100 ) ? ('0' + D.ms) : (D.ms);
+		var z = '' + D.Y + D.m + D.d + '.' + D.H + D.i + D.s + '.' + D.ms;
+		return z;
 	},
 	
 	sleep : function(milliSeconds) {
