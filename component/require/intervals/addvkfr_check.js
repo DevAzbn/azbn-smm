@@ -133,7 +133,7 @@ function _(azbn) {
 									
 								}
 								
-							} else {
+							} else if(resp.response.items && resp.response.items.length > 0) {
 								
 								var max = resp.response.items.length - 1;
 								var min = 0;
